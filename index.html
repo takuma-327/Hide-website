@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <style>
+        /* 1. 全体の設定（背景を黒にして写真を主役に） */
+        body {
+            background-color: #121212;
+            color: #fff;
+            font-family: sans-serif;
+            text-align: center;
+            padding: 30px 10px;
+        }
+
+        /* 2. 写真を並べるCSS（これだけでスマホもPCも自動で綺麗に並びます） */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;       /* 端までいったら自動で折り返す */
+            justify-content: center;/* 中央寄せに並べる */
+            gap: 10px;             /* 写真と写真のすき間 */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 3. 写真1枚ずつのサイズ（縦横を同じにして正方形にそろえる） */
+        .gallery-item {
+            width: 180px;          /* 写真の横幅 */
+            height: 180px;         /* 写真の縦幅 */
+            object-fit: cover;     /* どんな比率の写真も正方形にきれいに収める */
+            cursor: pointer;       /* マウスを乗せたときに指マークにする */
+            border-radius: 4px;    /* 角を少し丸くする */
+        }
+
+        /* 4. 【大画面で拡大】するための設定（最初は隠しておきます） */
+        .modal {
+            display: none;         /* 普段は非表示 */
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9); /* 背景を暗く */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        /* 拡大した写真のサイズ */
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>PHOTO GALLERY</h1>
+
+    <div class="gallery">
+        <img class="gallery-item" src="photo1.png" onclick="openModal(this.src)">
+        <img class="gallery-item" src="photo2.png" onclick="openModal(this.src)">
+        <img class="gallery-item" src="photo3.png" onclick="openModal(this.src)">
+        <img class="gallery-item" src="photo4.png" onclick="openModal(this.src)">
+        <img class="gallery-item" src="photo5.png" onclick="openModal(this.src)">
+        <img class="gallery-item" src="photo6.png" onclick="openModal(this.src)">
+        <img class="gallery-item" src="photo7.png" onclick="openModal(this.src)">
+        <img class="gallery-item" src="photo8.png" onclick="openModal(this.src)">
+        <img class="gallery-item" src="photo9.png" onclick="openModal(this.src)">
+        <img class="gallery-item" src="photo10.png" onclick="openModal(this.src)">
+        <img class="gallery-item" src="photo11.png" onclick="openModal(this.src)">
+    </div>
+
+    <div id="photoModal" class="modal" onclick="this.style.display='none'">
+        <img id="modalImg" src="">
+    </div>
+
+    <script>
+        function openModal(src) {
+            document.getElementById('modalImg').src = src;
+            document.getElementById('photoModal').style.display = 'flex';
+        }
+    </script>
+
+</body>
+</html>
